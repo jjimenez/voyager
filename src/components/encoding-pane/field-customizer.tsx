@@ -22,6 +22,8 @@ export class FieldCustomizerBase extends React.PureComponent<FieldCustomizerProp
     // map[channel] = map[encodingType] => [{prop, nestedProp}]
     return {
       'position': {
+        'Common': [{prop: 'scale', nestedProp: 'type'}, {prop: 'scale', nestedProp: 'range'},
+          {prop: 'axis', nestedProp: 'title'}, {prop: 'stack', nestedProp: 'stack'}],
         'Scale': [{prop: 'scale', nestedProp: 'type'}, {prop: 'scale', nestedProp: 'range'}],
         'Axis': [{prop: 'axis', nestedProp: 'orient'}, {prop: 'axis', nestedProp: 'title'}],
         'Stack': [{prop: 'stack', nestedProp: 'stack'}]
