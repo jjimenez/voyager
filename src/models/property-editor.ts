@@ -1,5 +1,17 @@
 import * as vlSchema from 'vega-lite/build/vega-lite-schema.json';
 
+export const COLOR_COLOR_SCHEMA = {
+  "type": "object",
+  "title": "Color",
+  "properties": {
+    "colorPicker": {
+      "type": "string",
+      "title": "Color",
+      "default": "#4682b4"
+    }
+  }
+};
+
 export const AXIS_TITLE_SCHEMA = {
   "type": "object",
   "title": "Axis Title",
@@ -36,8 +48,6 @@ export const SCALE_RANGE_SCHEMA = {
   },
 };
 
-// export const SCALE_TYPE_SCHEMA = (vlSchema as any).definitions.ScaleType;
-
 export const SCALE_TYPE_SCHEMA = {
   "type": "object",
   "title": "Scale Type",
@@ -48,6 +58,12 @@ export const SCALE_TYPE_SCHEMA = {
       "type": "string"
     },
   },
+};
+
+export const COLOR_COLOR_UISCHEMA = {
+  "colorPicker": {
+    "ui:widget": "color"
+  }
 };
 
 export const AXIS_TITLE_UISCHEMA = {

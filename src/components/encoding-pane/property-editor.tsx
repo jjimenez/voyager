@@ -4,7 +4,12 @@ import Form from 'react-jsonschema-form';
 import {ActionHandler} from '../../actions';
 import {SPEC_FIELD_NESTED_PROP_CHANGE, SpecEncodingAction} from '../../actions/shelf';
 import {
-  AXIS_ORIENT_SCHEMA, AXIS_ORIENT_UISCHEMA, AXIS_TITLE_SCHEMA, AXIS_TITLE_UISCHEMA,
+  AXIS_ORIENT_SCHEMA,
+  AXIS_ORIENT_UISCHEMA,
+  AXIS_TITLE_SCHEMA,
+  AXIS_TITLE_UISCHEMA,
+  COLOR_COLOR_SCHEMA,
+  COLOR_COLOR_UISCHEMA,
   SCALE_RANGE_SCHEMA,
   SCALE_RANGE_UISCHEMA,
   SCALE_TYPE_SCHEMA,
@@ -32,13 +37,15 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
       "scale_range": SCALE_RANGE_SCHEMA,
       "axis_orient": AXIS_ORIENT_SCHEMA,
       "axis_title": AXIS_TITLE_SCHEMA,
+      "color_color": COLOR_COLOR_SCHEMA
     };
 
     const UISCHEMA_OBJ = {
       "scale_type": SCALE_TYPE_UISCHEMA,
       "scale_range": SCALE_RANGE_UISCHEMA,
       "axis_orient": AXIS_ORIENT_UISCHEMA,
-      "axis_title": AXIS_TITLE_UISCHEMA
+      "axis_title": AXIS_TITLE_UISCHEMA,
+      "color_color": COLOR_COLOR_UISCHEMA
     };
 
     const {prop, nestedProp} = this.props;
@@ -50,7 +57,7 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
         <Form
           schema={schema}
           uiSchema={uiSchema}
-          onSubmit={this.changeFieldProperty}
+          onChange={this.changeFieldProperty}
         >
           <button type="submit" style={{display: 'none'}}>Submit</button>
           {/* hide required submit button */}
@@ -62,6 +69,8 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
   protected changeFieldProperty(result: any) {
     const {prop, nestedProp, shelfId, handleAction} = this.props;
     const value = result.formData[Object.keys(result.formData)[0]];
+    console.log("KANYE");
+    console.log(value);
     handleAction({
       type: SPEC_FIELD_NESTED_PROP_CHANGE,
       payload: {

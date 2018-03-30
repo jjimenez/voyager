@@ -26,24 +26,21 @@ export class FieldCustomizerBase extends React.PureComponent<FieldCustomizerProp
         'Axis': [{prop: 'axis', nestedProp: 'orient'}, {prop: 'axis', nestedProp: 'title'}]
       },
       'mark': {
-        'Color': [{prop: 'color', nestedProp: 'scale'}],
+        'Color': [{prop: 'color', nestedProp: 'color'}],
         'Shape': [{prop: 'shape', nestedProp: 'scale'}, {prop: 'shape', nestedProp: 'legend'}]
       }
     };
   }
 
-  private static encodingTypes() {
-    return ["General", "Axis", "Scale"];
-  }
-
   public render() {
     const {shelfId, handleAction, fieldDef} = this.props;
+    const keys = Object.keys(this.getEncodingTypeForChannel());
     return (
       <div styleName='field-customizer'>
         <Tabs>
           <TabList>
             {
-              FieldCustomizerBase.encodingTypes().map((encodingType, i) => {
+              keys.map((encodingType, i) => {
                 return (
                   <Tab key={i}>{encodingType}</Tab>
                 );
@@ -51,10 +48,10 @@ export class FieldCustomizerBase extends React.PureComponent<FieldCustomizerProp
             }
           </TabList>
           <div>
-            <TabPanel key="general">test</TabPanel>
+            {/*<TabPanel key="general">test</TabPanel>*/}
             {
               // TODO: Deal with general tab
-              FieldCustomizerBase.encodingTypes().slice(1).map(encodingType => {
+              keys.map(encodingType => {
                 const vals = this.getEncodingTypeForChannel()[encodingType] as CustomProp[];
                 return (
                   <TabPanel key={encodingType}>
@@ -83,7 +80,7 @@ export class FieldCustomizerBase extends React.PureComponent<FieldCustomizerProp
 
   private getEncodingTypeForChannel() {
     const {shelfId} = this.props;
-    if (shelfId.channel.toString() === "x") {
+    if (shelfId.channel.toString() === "x" || shelfId.channel.toString() === "y") {
       return FieldCustomizerBase.channelEncodingMap().position;
     } else {
       return FieldCustomizerBase.channelEncodingMap().mark;
