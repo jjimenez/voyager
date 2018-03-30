@@ -12,7 +12,6 @@ import {
 } from '../../models/property-editor';
 import {ShelfFieldDef, ShelfId} from '../../models/shelf/spec';
 import * as styles from './property-editor.scss';
-import Timer = NodeJS.Timer;
 
 export interface PropertyEditorProps extends ActionHandler<SpecEncodingAction> {
   prop: string;
@@ -43,14 +42,14 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
     };
 
     const {prop, nestedProp} = this.props;
-    const key = prop + "_" + nestedProp;
-    const jSchema = SCHEMA_OBJ[key];
-    const uiSchema2 = UISCHEMA_OBJ[key];
+    const encodingKey = prop + "_" + nestedProp;
+    const schema = SCHEMA_OBJ[encodingKey];
+    const uiSchema = UISCHEMA_OBJ[encodingKey];
     return (
       <div styleName="property-editor">
         <Form
-          schema={jSchema}
-          uiSchema={uiSchema2}
+          schema={schema}
+          uiSchema={uiSchema}
           onSubmit={this.changeFieldProperty}
         >
           <button type="submit" style={{display: 'none'}}>Submit</button>
