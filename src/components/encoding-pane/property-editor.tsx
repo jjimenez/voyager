@@ -1,10 +1,16 @@
 import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
 import Form from 'react-jsonschema-form';
-import * as vlSchema from 'vega-lite/build/vega-lite-schema.json';
-import {ActionHandler} from '../../actions/redux-action';
-import {SPEC_FIELD_NESTED_PROP_CHANGE, SpecEncodingAction} from '../../actions/shelf/spec';
-import {ShelfFieldDef, ShelfId} from '../../models/shelf/spec/encoding';
+import {ActionHandler} from '../../actions';
+import {SPEC_FIELD_NESTED_PROP_CHANGE, SpecEncodingAction} from '../../actions/shelf';
+import {
+  AXIS_ORIENT_SCHEMA, AXIS_ORIENT_UISCHEMA, AXIS_TITLE_SCHEMA, AXIS_TITLE_UISCHEMA,
+  SCALE_RANGE_SCHEMA,
+  SCALE_RANGE_UISCHEMA,
+  SCALE_TYPE_SCHEMA,
+  SCALE_TYPE_UISCHEMA
+} from '../../models/property-editor';
+import {ShelfFieldDef, ShelfId} from '../../models/shelf/spec';
 import * as styles from './property-editor.scss';
 
 export interface PropertyEditorProps extends ActionHandler<SpecEncodingAction> {
@@ -21,21 +27,29 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
   }
 
   public render() {
-    const {prop, nestedProp, fieldDef} = this.props;
-    const uiSchema = {
-      "ui:title": `${prop} ${nestedProp}`,
-      "ui:placeholder": "auto",
-      "ui:emptyValue": "auto"
+    const SCHEMA_OBJ = {
+      "scale_type": SCALE_TYPE_SCHEMA,
+      "scale_range": SCALE_RANGE_SCHEMA,
+      "axis_orient": AXIS_ORIENT_SCHEMA,
+      "axis_title": AXIS_TITLE_SCHEMA,
     };
-    const formData = this.generateFormData(fieldDef, prop);
-    // const formData = fieldDef.axis ? fieldDef.axis.orient : 'auto';
-    // const formData = fieldDef.scale ? fieldDef.scale.type : 'auto';
+
+    const UISCHEMA_OBJ = {
+      "scale_type": SCALE_TYPE_UISCHEMA,
+      "scale_range": SCALE_RANGE_UISCHEMA,
+      "axis_orient": AXIS_ORIENT_UISCHEMA,
+      "axis_title": AXIS_TITLE_UISCHEMA
+    };
+
+    const {prop, nestedProp} = this.props;
+    const key = prop + "_" + nestedProp;
+    const jSchema = SCHEMA_OBJ[key];
+    const uiSchema2 = UISCHEMA_OBJ[key];
     return (
       <div styleName="property-editor">
         <Form
-          schema={this.generateSchema(prop)} // TODO don't use any
-          uiSchema={uiSchema}
-          formData={formData}
+          schema={jSchema}
+          uiSchema={uiSchema2}
           onChange={this.changeFieldProperty}
         >
           <button type="submit" style={{display: 'none'}}>Submit</button>
@@ -45,27 +59,9 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
     );
   }
 
-  protected generateFormData(fieldDef: ShelfFieldDef, prop: string) {
-    switch (prop) {
-      case "axis":
-        return fieldDef.axis ? fieldDef.axis.orient : 'auto';
-      case "scale":
-        return fieldDef.scale ? fieldDef.scale.type : 'auto';
-    }
-  }
-
-  protected generateSchema(prop: string) {
-    switch (prop) {
-      case "axis":
-        return (vlSchema as any).definitions.AxisOrient;
-      case "scale":
-        return (vlSchema as any).definitions.ScaleType;
-    }
-  }
-
   protected changeFieldProperty(result: any) {
     const {prop, nestedProp, shelfId, handleAction} = this.props;
-    const value = result.formData;
+    const value = result.formData[Object.keys(result.formData)[0]];
     handleAction({
       type: SPEC_FIELD_NESTED_PROP_CHANGE,
       payload: {
