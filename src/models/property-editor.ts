@@ -12,6 +12,18 @@ export const COLOR_COLOR_SCHEMA = {
   }
 };
 
+export const STACK_STACK_SCHEMA = {
+  "type": "object",
+  "title": "Stack Offset",
+  "properties": {
+    "stackSelect": {
+      "title": "Stack",
+      "enum": (vlSchema as any).definitions.StackOffset.enum,
+      "type": "string"
+    }
+  }
+};
+
 export const AXIS_TITLE_SCHEMA = {
   "type": "object",
   "title": "Axis Title",
@@ -93,4 +105,12 @@ export const SCALE_TYPE_UISCHEMA = {
     "ui:placeholder": "auto",
     "ui:emptyValue": "auto"
   },
+};
+
+export const STACK_STACK_UISCHEMA = {
+  "stackSelect": {
+    "ui:widget": "select",
+    "ui:placeholder": "auto",
+    "ui:emptyValue": "auto"
+  }
 };

@@ -23,10 +23,11 @@ export class FieldCustomizerBase extends React.PureComponent<FieldCustomizerProp
     return {
       'position': {
         'Scale': [{prop: 'scale', nestedProp: 'type'}, {prop: 'scale', nestedProp: 'range'}],
-        'Axis': [{prop: 'axis', nestedProp: 'orient'}, {prop: 'axis', nestedProp: 'title'}]
+        'Axis': [{prop: 'axis', nestedProp: 'orient'}, {prop: 'axis', nestedProp: 'title'}],
+        'Stack': [{prop: 'stack', nestedProp: 'stack'}]
       },
       'mark': {
-        'Color': [{prop: 'color', nestedProp: 'color'}],
+        'Color': [{prop: 'color', nestedProp: 'fill'}],
         'Shape': [{prop: 'shape', nestedProp: 'scale'}, {prop: 'shape', nestedProp: 'legend'}]
       }
     };

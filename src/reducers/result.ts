@@ -80,7 +80,6 @@ function resultPlotSpecModifyFieldReducer(encoding: EncodingWithFacet<any>, acti
   const {channel, prop, value} = action.payload;
   const channelDef = encoding[channel];
 
-
   if (!channelDef) {
     console.error(`${action.type} no working for channel ${channel} without field.`);
   } else if (isArray(channelDef)) {
@@ -92,7 +91,6 @@ function resultPlotSpecModifyFieldReducer(encoding: EncodingWithFacet<any>, acti
   }
 
   const fieldDef = encoding[channel] as FieldDef<any>;
-
   switch (action.type) {
     case RESULT_MODIFY_FIELD_PROP:
       return {

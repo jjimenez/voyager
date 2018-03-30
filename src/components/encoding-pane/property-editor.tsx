@@ -13,7 +13,7 @@ import {
   SCALE_RANGE_SCHEMA,
   SCALE_RANGE_UISCHEMA,
   SCALE_TYPE_SCHEMA,
-  SCALE_TYPE_UISCHEMA
+  SCALE_TYPE_UISCHEMA, STACK_STACK_SCHEMA, STACK_STACK_UISCHEMA
 } from '../../models/property-editor';
 import {ShelfFieldDef, ShelfId} from '../../models/shelf/spec';
 import * as styles from './property-editor.scss';
@@ -37,7 +37,8 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
       "scale_range": SCALE_RANGE_SCHEMA,
       "axis_orient": AXIS_ORIENT_SCHEMA,
       "axis_title": AXIS_TITLE_SCHEMA,
-      "color_color": COLOR_COLOR_SCHEMA
+      "color_fill": COLOR_COLOR_SCHEMA,
+      "stack_stack": STACK_STACK_SCHEMA
     };
 
     const UISCHEMA_OBJ = {
@@ -45,7 +46,8 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
       "scale_range": SCALE_RANGE_UISCHEMA,
       "axis_orient": AXIS_ORIENT_UISCHEMA,
       "axis_title": AXIS_TITLE_UISCHEMA,
-      "color_color": COLOR_COLOR_UISCHEMA
+      "color_fill": COLOR_COLOR_UISCHEMA,
+      "stack_stack": STACK_STACK_UISCHEMA
     };
 
     const {prop, nestedProp} = this.props;
@@ -69,8 +71,6 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
   protected changeFieldProperty(result: any) {
     const {prop, nestedProp, shelfId, handleAction} = this.props;
     const value = result.formData[Object.keys(result.formData)[0]];
-    console.log("KANYE");
-    console.log(value);
     handleAction({
       type: SPEC_FIELD_NESTED_PROP_CHANGE,
       payload: {
