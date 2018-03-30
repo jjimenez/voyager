@@ -12,6 +12,7 @@ import {
 } from '../../models/property-editor';
 import {ShelfFieldDef, ShelfId} from '../../models/shelf/spec';
 import * as styles from './property-editor.scss';
+import Timer = NodeJS.Timer;
 
 export interface PropertyEditorProps extends ActionHandler<SpecEncodingAction> {
   prop: string;
@@ -50,7 +51,7 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
         <Form
           schema={jSchema}
           uiSchema={uiSchema2}
-          onChange={this.changeFieldProperty}
+          onSubmit={this.changeFieldProperty}
         >
           <button type="submit" style={{display: 'none'}}>Submit</button>
           {/* hide required submit button */}
