@@ -25,7 +25,11 @@ export interface PropertyEditorProps extends ActionHandler<SpecEncodingAction> {
   fieldDef: ShelfFieldDef;
 }
 
-export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps, {}> {
+export interface PropertyEditorState {
+  formData: any;
+}
+
+export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps, PropertyEditorState> {
   constructor(props: PropertyEditorProps) {
     super(props);
     this.changeFieldProperty = this.changeFieldProperty.bind(this);
@@ -60,7 +64,7 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
         <Form
           schema={schema}
           uiSchema={uiSchema}
-          formData={this.state['formData']}
+          formData={this.state.formData}
           onChange={this.changeFieldProperty}
         >
           <button type="submit" style={{display: 'none'}}>Submit</button>
