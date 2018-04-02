@@ -29,6 +29,7 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
   constructor(props: PropertyEditorProps) {
     super(props);
     this.changeFieldProperty = this.changeFieldProperty.bind(this);
+    this.state = {formData: {}};
   }
 
   public render() {
@@ -59,6 +60,7 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
         <Form
           schema={schema}
           uiSchema={uiSchema}
+          formData={this.state['formData']}
           onChange={this.changeFieldProperty}
         >
           <button type="submit" style={{display: 'none'}}>Submit</button>
@@ -71,6 +73,7 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
   protected changeFieldProperty(result: any) {
     const {prop, nestedProp, shelfId, handleAction} = this.props;
     const value = result.formData[Object.keys(result.formData)[0]];
+    this.setState({formData: result.formData});
     handleAction({
       type: SPEC_FIELD_NESTED_PROP_CHANGE,
       payload: {
