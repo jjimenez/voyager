@@ -38,25 +38,25 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
 
   public render() {
     const SCHEMA_OBJ = {
-      "scale_type": SCALE_TYPE_SCHEMA,
-      "scale_range": SCALE_RANGE_SCHEMA,
-      "axis_orient": AXIS_ORIENT_SCHEMA,
-      "axis_title": AXIS_TITLE_SCHEMA,
-      "color_fill": COLOR_COLOR_SCHEMA,
-      "stack_stack": STACK_STACK_SCHEMA
+      "scale_type_quantitative": SCALE_TYPE_SCHEMA,
+      "scale_range_quantitative": SCALE_RANGE_SCHEMA,
+      "axis_orient_quantitative": AXIS_ORIENT_SCHEMA,
+      "axis_title_quantitative": AXIS_TITLE_SCHEMA,
+      "color_fill_quantitative": COLOR_COLOR_SCHEMA,
+      "stack_stack_quantitative": STACK_STACK_SCHEMA
     };
 
     const UISCHEMA_OBJ = {
-      "scale_type": SCALE_TYPE_UISCHEMA,
-      "scale_range": SCALE_RANGE_UISCHEMA,
-      "axis_orient": AXIS_ORIENT_UISCHEMA,
-      "axis_title": AXIS_TITLE_UISCHEMA,
-      "color_fill": COLOR_COLOR_UISCHEMA,
-      "stack_stack": STACK_STACK_UISCHEMA
+      "scale_type_quantitative": SCALE_TYPE_UISCHEMA,
+      "scale_range_quantitative": SCALE_RANGE_UISCHEMA,
+      "axis_orient_quantitative": AXIS_ORIENT_UISCHEMA,
+      "axis_title_quantitative": AXIS_TITLE_UISCHEMA,
+      "color_fill_quantitative": COLOR_COLOR_UISCHEMA,
+      "stack_stack_quantitative": STACK_STACK_UISCHEMA
     };
 
-    const {prop, nestedProp} = this.props;
-    const encodingKey = prop + "_" + nestedProp;
+    const {prop, nestedProp, fieldDef} = this.props;
+    const encodingKey = prop + "_" + nestedProp + "_quantitative";
     const schema = SCHEMA_OBJ[encodingKey];
     const uiSchema = UISCHEMA_OBJ[encodingKey];
     return (

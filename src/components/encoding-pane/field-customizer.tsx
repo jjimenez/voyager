@@ -41,7 +41,7 @@ export class FieldCustomizerBase extends React.PureComponent<FieldCustomizerProp
     return (
       <div styleName='field-customizer'>
         <Tabs>
-          <TabList>
+          <TabList className={'shit'}>
             {
               keys.map((encodingType, i) => {
                 return (
@@ -51,13 +51,11 @@ export class FieldCustomizerBase extends React.PureComponent<FieldCustomizerProp
             }
           </TabList>
           <div>
-            {/*<TabPanel key="general">test</TabPanel>*/}
             {
-              // TODO: Deal with general tab
-              keys.map(encodingType => {
+              keys.map((encodingType, i) => {
                 const vals = this.getEncodingTypeForChannel()[encodingType] as CustomProp[];
                 return (
-                  <TabPanel key={encodingType}>
+                  <TabPanel key={encodingType + i}>
                     {
                       vals.map(customizableProp => {
                         const {prop, nestedProp} = customizableProp;
@@ -71,7 +69,8 @@ export class FieldCustomizerBase extends React.PureComponent<FieldCustomizerProp
                             handleAction={handleAction}
                           />
                         );
-                      })}
+                      })
+                    }
                   </TabPanel>
                 );
               })}

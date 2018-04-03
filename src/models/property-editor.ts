@@ -2,7 +2,6 @@ import * as vlSchema from 'vega-lite/build/vega-lite-schema.json';
 
 export const COLOR_COLOR_SCHEMA = {
   "type": "object",
-  "title": "Color",
   "properties": {
     "colorPicker": {
       "type": "string",
@@ -14,10 +13,10 @@ export const COLOR_COLOR_SCHEMA = {
 
 export const STACK_STACK_SCHEMA = {
   "type": "object",
-  "title": "Stack Offset",
+  "title": "Stack",
   "properties": {
     "stackSelect": {
-      "title": "Stack",
+      "title": "Offset",
       "enum": (vlSchema as any).definitions.StackOffset.enum,
       "type": "string"
     }
@@ -26,7 +25,7 @@ export const STACK_STACK_SCHEMA = {
 
 export const AXIS_TITLE_SCHEMA = {
   "type": "object",
-  "title": "Axis Title",
+  "title": "Axis",
   "properties": {
     "axisTitle": {
       "type": "string",
@@ -37,7 +36,7 @@ export const AXIS_TITLE_SCHEMA = {
 
 export const AXIS_ORIENT_SCHEMA = {
   "type": "object",
-  "title": "Axis Orient",
+  "title": "Axis",
   "properties": {
     "orient": {
       "title": "Orient",
@@ -49,7 +48,7 @@ export const AXIS_ORIENT_SCHEMA = {
 
 export const SCALE_RANGE_SCHEMA = {
   "type": "object",
-  "title": "Scale Range",
+  "title": "Scale",
   "properties": {
     "integerRange": {
       "title": "Range",
@@ -62,7 +61,7 @@ export const SCALE_RANGE_SCHEMA = {
 
 export const SCALE_TYPE_SCHEMA = {
   "type": "object",
-  "title": "Scale Type",
+  "title": "Scale",
   "properties": {
     "scaleTypeSelect": {
       "title": "Type",
