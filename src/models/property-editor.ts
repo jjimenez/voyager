@@ -90,7 +90,7 @@ export const AXIS_ORIENT_UISCHEMA = {
     "ui:placeholder": "auto",
     "ui:emptyValue": "auto"
   }
-}
+};
 
 export const SCALE_RANGE_UISCHEMA = {
   "integerRange": {
