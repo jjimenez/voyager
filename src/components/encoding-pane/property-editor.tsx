@@ -64,7 +64,6 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
     if (fieldDef.type.toString() === "quantitative") {
       encodingKey += "_quantitative";
     }
-    console.log("ENCODING KEY: " + encodingKey);
     const schema = SCHEMA_OBJ[encodingKey];
     const uiSchema = UISCHEMA_OBJ[encodingKey];
     return (

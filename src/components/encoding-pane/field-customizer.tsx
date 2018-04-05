@@ -86,6 +86,7 @@ export class FieldCustomizerBase extends React.PureComponent<FieldCustomizerProp
     );
   }
 
+  // TODO: Refactor else condition from just mark
   private getEncodingTypeForChannel() {
     const {shelfId, fieldDef} = this.props;
     const encodingMap = FieldCustomizerBase.channelEncodingMap();

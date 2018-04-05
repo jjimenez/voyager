@@ -53,8 +53,6 @@ export function shelfSpecReducer(
   shelfSpec: Readonly<ShelfUnitSpec> = DEFAULT_SHELF_UNIT_SPEC,
   action: Action
 ): ShelfUnitSpec {
-  console.log("TYPE")
-  console.log(action.type);
   switch (action.type) {
     case SPEC_CLEAR:
       return DEFAULT_SHELF_UNIT_SPEC;
@@ -94,11 +92,8 @@ export function shelfSpecReducer(
       });
     }
 
-    // TODO:::::
     case SPEC_FIELD_NESTED_PROP_CHANGE: {
       const {shelfId, prop, nestedProp, value} = action.payload;
-      console.log(shelfSpec);
-      console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
       return modifyEncoding(shelfSpec, shelfId, (fieldDef: Readonly<ShelfFieldDef | ShelfAnyEncodingDef>) => {
         return modifyNestedFieldProp(fieldDef, prop, nestedProp, value);
       });
@@ -218,10 +213,7 @@ function addEncoding(shelf: Readonly<ShelfUnitSpec>, shelfId: ShelfId, fieldDef:
 
 type ShelfFieldDefModifier<T extends ShelfFieldDef> = (fieldDef: Readonly<T>) => T;
 
-// TODO: have to modify this function
 function modifyEncoding(shelf: Readonly<ShelfUnitSpec>, shelfId: ShelfId, modifier: ShelfFieldDefModifier<any>) {
-  console.log(shelf);
-  console.log("SHELF ^");
   if (isWildcardChannelId(shelfId)) {
     return {
       ...shelf,
@@ -298,10 +290,6 @@ export function modifyNestedFieldProp(
   nestedProp: string,
   value: any
 ): Readonly<AnyFieldDef> {
-  console.log(fieldDef);
-  console.log(prop)
-  console.log(nestedProp)
-  console.log(value)
   const {[prop]: oldParent, ...fieldDefWithoutProp} = fieldDef;
   const {[nestedProp]: _oldValue, ...parentWithoutNestedProp} = oldParent || {};
   const parent = {
