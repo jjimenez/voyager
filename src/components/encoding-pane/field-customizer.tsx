@@ -19,7 +19,7 @@ export interface CustomProp {
 
 export class FieldCustomizerBase extends React.PureComponent<FieldCustomizerProps, {}> {
   private static channelEncodingMap() {
-    // map[channel] = map[encodingType] => [{prop, nestedProp}]
+    // NOTE: Eventually can refactor nonQuantitative into temporal, nominal, ordinal, etc
     return {
       'position': {
         'quantitative': {
