@@ -22,11 +22,17 @@ export class FieldCustomizerBase extends React.PureComponent<FieldCustomizerProp
     // map[channel] = map[encodingType] => [{prop, nestedProp}]
     return {
       'position': {
-        'Common': [{prop: 'scale', nestedProp: 'type'}, {prop: 'scale', nestedProp: 'range'},
-          {prop: 'axis', nestedProp: 'title'}, {prop: 'stack', nestedProp: 'stack'}],
-        'Scale': [{prop: 'scale', nestedProp: 'type'}, {prop: 'scale', nestedProp: 'range'}],
-        'Axis': [{prop: 'axis', nestedProp: 'orient'}, {prop: 'axis', nestedProp: 'title'}],
-        'Stack': [{prop: 'stack', nestedProp: 'stack'}]
+        'quantitative': {
+          'Common': [{prop: 'scale', nestedProp: 'type'},
+            {prop: 'axis', nestedProp: 'title'}, {prop: 'stack', nestedProp: 'stack'}],
+          'Scale': [{prop: 'scale', nestedProp: 'type'}],
+          'Axis': [{prop: 'axis', nestedProp: 'orient'}, {prop: 'axis', nestedProp: 'title'}],
+          'Stack': [{prop: 'stack', nestedProp: 'stack'}]
+        },
+        'nonQuantitative': {
+          'Scale': [{prop: 'scale', nestedProp: 'type'}],
+          'Axis': [{prop: 'axis', nestedProp: 'orient'}, {prop: 'axis', nestedProp: 'title'}],
+        }
       },
       'mark': {
         'Color': [{prop: 'color', nestedProp: 'fill'}],
@@ -81,11 +87,13 @@ export class FieldCustomizerBase extends React.PureComponent<FieldCustomizerProp
   }
 
   private getEncodingTypeForChannel() {
-    const {shelfId} = this.props;
+    const {shelfId, fieldDef} = this.props;
+    const encodingMap = FieldCustomizerBase.channelEncodingMap();
     if (shelfId.channel.toString() === "x" || shelfId.channel.toString() === "y") {
-      return FieldCustomizerBase.channelEncodingMap().position;
+      return fieldDef.type.toString() === "quantitative" ? encodingMap.position.quantitative :
+        encodingMap.position.nonQuantitative;
     } else {
-      return FieldCustomizerBase.channelEncodingMap().mark;
+      return encodingMap.mark;
     }
   }
 }
