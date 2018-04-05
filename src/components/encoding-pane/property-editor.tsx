@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
 import Form from 'react-jsonschema-form';
+import {debounce} from 'throttle-debounce';
 import {ActionHandler} from '../../actions';
 import {SPEC_FIELD_NESTED_PROP_CHANGE, SpecEncodingAction} from '../../actions/shelf';
 import {SCHEMA_OBJ, UISCHEMA_OBJ} from '../../models/property-editor';
@@ -22,6 +23,7 @@ export class PropertyEditorBase extends React.PureComponent<PropertyEditorProps,
   constructor(props: PropertyEditorProps) {
     super(props);
     this.changeFieldProperty = this.changeFieldProperty.bind(this);
+    this.changeFieldProperty = debounce(500, this.changeFieldProperty);
     this.state = {formData: {}};
   }
 
