@@ -113,3 +113,25 @@ export const STACK_STACK_UISCHEMA = {
     "ui:emptyValue": "auto"
   }
 };
+
+export const SCHEMA_OBJ = {
+  "scale_type_quantitative": SCALE_TYPE_SCHEMA,
+  "axis_orient_quantitative": AXIS_ORIENT_SCHEMA,
+  "axis_title_quantitative": AXIS_TITLE_SCHEMA,
+  "color_fill_quantitative": COLOR_COLOR_SCHEMA,
+  "stack_stack_quantitative": STACK_STACK_SCHEMA,
+  "axis_orient": AXIS_ORIENT_SCHEMA,
+  "axis_title": AXIS_TITLE_SCHEMA,
+  "scale_type": SCALE_TYPE_SCHEMA
+};
+
+export const UISCHEMA_OBJ = {
+  "scale_type_quantitative": SCALE_TYPE_UISCHEMA,
+  "axis_orient_quantitative": AXIS_ORIENT_UISCHEMA,
+  "axis_title_quantitative": AXIS_TITLE_UISCHEMA,
+  "color_fill_quantitative": COLOR_COLOR_UISCHEMA,
+  "stack_stack_quantitative": STACK_STACK_UISCHEMA,
+  "axis_orient": AXIS_ORIENT_UISCHEMA,
+  "axis_title": AXIS_TITLE_UISCHEMA,
+  "scale_type": SCALE_TYPE_UISCHEMA
+};
